@@ -85,7 +85,17 @@
             android:targetPackage="com.tmobile.themechooser"
             android:targetClass="com.tmobile.themechooser.ThemeChooser" />
     </header>
-
+	
+	    <!-- TRDS -->
+    <header
+        android:id="@+id/trds_settings"
+        android:icon="@drawable/ic_settings_trds"
+        android:title="@string/trds_settings_title" />
+	
+	<header
+		android:id="@+id/system_settings"
+		android:icon="@drawable/ic_settings_themes"
+		android:title="@string/cd_settings_title" />
     <!-- System UI -->
     <header
         android:id="@+id/system_settings"
