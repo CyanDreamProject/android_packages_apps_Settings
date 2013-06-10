@@ -198,6 +198,7 @@ public class RingerVolumePreference extends VolumePreference {
         final CheckBox linkCheckBox = (CheckBox) view.findViewById(R.id.link_ring_and_volume);
         final CheckBox linkMuteStates = (CheckBox) view.findViewById(R.id.link_mutes);
         final CheckBox volumeKeysControlRingStream = (CheckBox) view.findViewById(R.id.volume_keys_control_ring_stream);
+
         mSafeHeadsetVolume = (CheckBox) view.findViewById(R.id.safe_headset_volume);
 
         final View ringerSection = view.findViewById(R.id.ringer_section);
@@ -269,20 +270,36 @@ public class RingerVolumePreference extends VolumePreference {
 
             });
 
+<<<<<<< HEAD
             if (System.getInt(getContext().getContentResolver(),
                     System.VOLUME_KEYS_CONTROL_RING_STREAM, 1) == 1) {
                 volumeKeysControlRingStream.setChecked(true);
             } else {
                 volumeKeysControlRingStream.setChecked(false);
+=======
+           if (System.getInt(getContext().getContentResolver(),
+                    		System.VOLUME_KEYS_CONTROL_RING_STREAM, 1) == 1) {
+                	volumeKeysControlRingStream.setChecked(true);
+            } else {
+                	volumeKeysControlRingStream.setChecked(false);
+>>>>>>> 7c739a8... HALO (2/2)
             }
 
             volumeKeysControlRingStream.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+<<<<<<< HEAD
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     Settings.System.putInt(buttonView.getContext().getContentResolver(),
                             Settings.System.VOLUME_KEYS_CONTROL_RING_STREAM, isChecked ? 1 : 0);
                 }
+=======
+                	@Override
+                	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    		Settings.System.putInt(buttonView.getContext().getContentResolver(),
+                            		Settings.System.VOLUME_KEYS_CONTROL_RING_STREAM, isChecked ? 1 : 0);
+                	}
+>>>>>>> 7c739a8... HALO (2/2)
 
             });
 
