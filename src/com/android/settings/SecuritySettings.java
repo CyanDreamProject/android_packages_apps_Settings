@@ -137,7 +137,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private CheckBoxPreference mQuickUnlockScreen;
     private ListPreference mSmsSecurityCheck;
     private PreferenceScreen mBlacklist;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

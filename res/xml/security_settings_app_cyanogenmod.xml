@@ -22,7 +22,6 @@
         android:title="@string/app_security_title">
 
         <Preference
-         <Preference
             android:fragment="com.android.settings.cyanogenmod.privacyguard.PrivacyGuardManager"
             android:key="privacy_guard_manager"
             android:summary="@string/privacy_guard_manager_summary"
@@ -32,6 +31,7 @@
             android:key="blacklist"
             android:title="@string/blacklist_title"
             android:fragment="com.android.settings.blacklist.BlacklistSettings" />
+
         <ListPreference
             android:key="sms_security_check_limit"
             android:dialogTitle="@string/sms_security_check_limit_title"

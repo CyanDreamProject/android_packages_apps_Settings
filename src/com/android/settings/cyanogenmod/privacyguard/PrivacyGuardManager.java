@@ -220,9 +220,6 @@ public class PrivacyGuardManager extends Fragment
         } catch (PackageManager.NameNotFoundException e) {
             platformCert = null;
         }
-        List<PackageInfo> packages = mPm.getInstalledPackages(PackageManager.GET_PERMISSIONS);
-        boolean showSystemApps = shouldShowSystemApps();
-        boolean filterByPermission = shouldFilterByPermission();
 
         for (PackageInfo info : packages) {
             final ApplicationInfo appInfo = info.applicationInfo;
@@ -235,8 +232,6 @@ public class PrivacyGuardManager extends Fragment
             }
 
             // skip all system apps if they shall not be included
-            
-            // skip system apps if they shall not be included
             if (!showSystemApps && (appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
                 continue;
             }
@@ -263,10 +258,6 @@ public class PrivacyGuardManager extends Fragment
                 if (lhs.enabled != rhs.enabled) {
                     return lhs.enabled ? -1 : 1;
                 }
-        // sort the apps by title
-        Collections.sort(apps, new Comparator<AppInfo>() {
-            @Override
-            public int compare(AppInfo lhs, AppInfo rhs) {
                 return lhs.title.compareToIgnoreCase(rhs.title);
             }
         });
