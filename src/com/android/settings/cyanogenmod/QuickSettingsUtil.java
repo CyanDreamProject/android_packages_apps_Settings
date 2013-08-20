@@ -31,7 +31,6 @@ import static com.android.internal.util.cm.QSConstants.TILE_LTE;
 import static com.android.internal.util.cm.QSConstants.TILE_MOBILEDATA;
 import static com.android.internal.util.cm.QSConstants.TILE_NETWORKMODE;
 import static com.android.internal.util.cm.QSConstants.TILE_NFC;
-import static com.android.internal.util.cm.QSConstants.TILE_FCHARGE;
 import static com.android.internal.util.cm.QSConstants.TILE_PROFILE;
 import static com.android.internal.util.cm.QSConstants.TILE_QUIETHOURS;
 import static com.android.internal.util.cm.QSConstants.TILE_RINGER;
@@ -44,13 +43,6 @@ import static com.android.internal.util.cm.QSConstants.TILE_USER;
 import static com.android.internal.util.cm.QSConstants.TILE_VOLUME;
 import static com.android.internal.util.cm.QSConstants.TILE_WIFI;
 import static com.android.internal.util.cm.QSConstants.TILE_WIFIAP;
-import static com.android.internal.util.cm.QSConstants.TILE_HYBRID;
-import static com.android.internal.util.cm.QSUtils.deviceSupportsBluetooth;
-import static com.android.internal.util.cm.QSUtils.deviceSupportsMobileData;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -153,7 +145,6 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_WIFIAP, R.string.title_tile_wifiap,
                 "com.android.systemui:drawable/ic_qs_wifi_ap_neutral"));
-<<<<<<< HEAD
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {
@@ -263,14 +254,6 @@ public class QuickSettingsUtil {
 
     public static boolean isTileAvailable(String id) {
         return ENABLED_TILES.containsKey(id);
-=======
-        TILES.put(TILE_HYBRID, new QuickSettingsUtil.TileInfo(
-                TILE_HYBRID, R.string.title_tile_hybrid,
-                "com.android.systemui:drawable/ic_qs_hybrid"));
-        TILES.put(TILE_FCHARGE, new QuickSettingsUtil.TileInfo(
-                TILE_FCHARGE, R.string.title_tile_fcharge,
-                "com.android.systemui:drawable/ic_qs_fcharge_off"));
->>>>>>> 5cf26b2... Settings: Add fast charge QS toggle and other
     }
 
     public static String getCurrentTiles(Context context) {
