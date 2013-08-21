@@ -59,7 +59,7 @@
     <string name="build_date">Byggdato</string>
     <string name="cpu_info">CPU</string>
     <string name="mem_info">Minne</string>
-    <string name="anonymous_statistics_title">CyanogenMod-statistikk</string>
+    <string name="anonymous_statistics_title">CyanDream-statistikk</string>
     <string name="anonymous_statistics_summary">Bidra til å gjøre CyanogenMod bedre ved å sende inn anonym statistikk.</string>
     <string name="anonymous_statistics_warning_title">Om</string>
     <string name="anonymous_statistics_warning">Ved å velge å sende inn statistikk til Cyanogenmod vil ikke-personlige data sendes til utviklerne
@@ -69,7 +69,7 @@
     <string name="preview_data_title">Forhåndsvis data</string>
     <string name="view_stats_title">Se statistikk</string>
     <string name="anonymous_learn_more">Lær mer</string>
-    <string name="anonymous_notification_desc">Aktiver eller deaktiver CyanogenMod-statistikk</string>
+    <string name="anonymous_notification_desc">Aktiver eller deaktiver CyanDream-statistikk</string>
     <string name="preview_id_title">Unik ID</string>
     <string name="preview_device_title">Enhet</string>
     <string name="preview_version_title">Versjon</string>
@@ -397,7 +397,7 @@
     <string name="power_menu_airplane_title">Flymodus</string>
     <string name="power_menu_user_title">Brukervelger</string>
     <string name="power_menu_sound_title">Lydpanel</string>
-    <string name="cmupdate_settings_title">CyanogenMod-oppdateringer</string>
+    <string name="cmupdate_settings_title">CyanDream-oppdateringer</string>
     <string name="cmupdate_settings_summary">Vis, se etter eller installer tilgjengelige oppdateringer</string>
     <string name="advanced_settings_title">Avansert</string>
     <string name="ime_switcher_notify">IME-varsling</string>
