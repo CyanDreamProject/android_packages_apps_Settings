@@ -37,7 +37,7 @@
     <string name="notification_vibrate_during_calls_title">Während Anruf vibrieren</string>
     <string name="notification_vibrate_during_calls_summary">Bei eingehenden Benachrichtigungen während eines Anrufs sanft vibrieren</string>
     <string name="device_hostname">Hostname des Geräts</string>
-    <string name="mod_version">CyanogenMod-Version</string>
+    <string name="mod_version">CyanDream-Version</string>
     <string name="mod_version_default">Unbekannt</string>
     <string name="build_date">Build-Datum</string>
     <string name="cpu_info">Prozessor</string>
@@ -347,7 +347,7 @@
     <string name="power_menu_airplane_title">Flugmodus</string>
     <string name="power_menu_user_title">Benutzer</string>
     <string name="power_menu_sound_title">Lautlos</string>
-    <string name="cmupdate_settings_title">CyanogenMod-Updates</string>
+    <string name="cmupdate_settings_title">CyanDream-Updates</string>
     <string name="cmupdate_settings_summary">Auf neue Versionen prüfen und diese installieren</string>
     <string name="advanced_settings_title">Erweitert</string>
     <string name="ime_switcher_notify">Auswahlbenachrichtigung</string>
