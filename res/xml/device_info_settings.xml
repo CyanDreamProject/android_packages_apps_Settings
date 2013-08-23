@@ -45,8 +45,8 @@
                 android:title="@string/cmupdate_settings_title" 
                 android:summary="@string/cmupdate_settings_summary">
             <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="de.yanniks.cm_updatechecker"
-                    android:targetClass="de.yanniks.cm_updatechecker.UpdateChecker" />
+                    android:targetPackage="de.yanniks.cyandream"
+                    android:targetClass="de.yanniks.cyandream.UpdateChecker" />
         </PreferenceScreen>
 
         <!-- Anonymous statistics - (CMStats) -->
@@ -61,8 +61,8 @@
         <PreferenceScreen android:key="changelog"
                 android:title="@string/changelog_title">
             <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.android.settings"
-                    android:targetClass="com.android.settings.cyanogenmod.ChangeLog" />
+                    android:targetPackage="de.yanniks.cyandream"
+                    android:targetClass="de.yanniks.cyandream.cmchanges" />
         </PreferenceScreen>
 
         <!-- Legal Information -->
