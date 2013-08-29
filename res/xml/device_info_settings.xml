@@ -46,7 +46,7 @@
                 android:summary="@string/cmupdate_settings_summary">
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.cyandream.controlcenter"
-                    android:targetClass="com.cyandream.controlcenter.UpdateChecker" />
+                    android:targetClass="com.cyandream.controlcenter.updatechecker.splash.SplashScreen" />
         </PreferenceScreen>
 
         <!-- Anonymous statistics - (CMStats) -->
@@ -62,7 +62,7 @@
                 android:title="@string/changelog_title" >
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.cyandream.controlcenter"
-                    android:targetClass="com.cyandream.controlcenter.cmchanges" />
+                    android:targetClass="com.cyandream.controlcenter.updatechecker.cmchanges" />
         </PreferenceScreen>
 
         <!-- Legal Information -->
