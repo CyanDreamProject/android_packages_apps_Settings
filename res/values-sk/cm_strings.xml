@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2012-2013 The CyanogenMod Project
+     Copyright (C) 2012-2013 The CyanDream Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -408,7 +408,7 @@
     <string name="power_menu_airplane_title">Režim V lietadle</string>
     <string name="power_menu_user_title">Prepínač užívateľov</string>
     <string name="power_menu_sound_title">Panel hlasitosti</string>
-    <string name="cmupdate_settings_title">Aktualizácie CyanogenMod</string>
+    <string name="cmupdate_settings_title">Aktualizácie CyanDream</string>
     <string name="cmupdate_settings_summary">Skontrolujte, zobrazte alebo nainštalujte dostupné aktualizácie</string>
     <string name="advanced_settings_title">Pokročilé</string>
     <string name="ime_switcher_notify">Oznámenie pre výber vstupnej metódy</string>
