@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012-2013 The CyanogenMod Project
+<!-- Copyright (C) 2012-2013 The CyanDream Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -63,9 +63,9 @@
     <string name="cpu_info">Prosessori</string>
     <string name="mem_info">Muisti</string>
     <string name="anonymous_statistics_title">CyanDream-tilastointi</string>
-    <string name="anonymous_statistics_summary">Auta tekemään CyanogenModista parempi tarjoamalla anonyymejä tilastoraportteja</string>
+    <string name="anonymous_statistics_summary">Auta tekemään CyanDreamista parempi tarjoamalla anonyymejä tilastoraportteja</string>
     <string name="anonymous_statistics_warning_title">Tietoja</string>
-    <string name="anonymous_statistics_warning">CyanDream-tilastojen käyttöönotto sallii anonyymien tietojen lähettämisen CyanogenModin kehittäjille, jotta laitteiden järjestelmäasennuksia voidaan seurata. Informaatio sisältää uniikin tunnisteen, joka ei sisällä henkilökohtaisia tietojasi. Tietoa lähetetään jokaisella uudelleenkäynnistyskerralla.\n\nValitse Esikatsele tietoja nähdäksesi, minkälaisia tietoja laitteestasi lähetetään.</string>
+    <string name="anonymous_statistics_warning">CyanDream-tilastojen käyttöönotto sallii anonyymien tietojen lähettämisen CyanDreamin kehittäjille, jotta laitteiden järjestelmäasennuksia voidaan seurata. Informaatio sisältää uniikin tunnisteen, joka ei sisällä henkilökohtaisia tietojasi. Tietoa lähetetään jokaisella uudelleenkäynnistyskerralla.\n\nValitse Esikatsele tietoja nähdäksesi, minkälaisia tietoja laitteestasi lähetetään.</string>
     <string name="enable_reporting_title">Ota lähettäminen käyttöön</string>
     <string name="preview_data_title">Esikatsele tietoja</string>
     <string name="view_stats_title">Näytä tilastot</string>
@@ -509,7 +509,7 @@
     <string name="headset_connect_player_summary">Käynnistä musiikkisovellus kytkettäessä kuulokkeet</string>
     <string name="safe_headset_volume_title">Turvallinen kuulokkeiden äänenvoimakkuus</string>
     <string name="cyanogenmod_waiver_title">Vastuuvapautus</string>
-    <string name="cyanogenmod_waiver_body">Tämän asetuksen muuttaminen saattaa rikkoa osavaltiosi tai hallituksesi lakeja.\n\nJos valitset \'OK\' alhaalta, olet lukenut tämän varoituksen ja luovut kaikista korvausvaatimuksista ja vapautat CyanogenModin ja siihen osallistuvat henkilöt kaikesta vastuusta.</string>
+    <string name="cyanogenmod_waiver_body">Tämän asetuksen muuttaminen saattaa rikkoa osavaltiosi tai hallituksesi lakeja.\n\nJos valitset \'OK\' alhaalta, olet lukenut tämän varoituksen ja luovut kaikista korvausvaatimuksista ja vapautat CyanDreamin ja siihen osallistuvat henkilöt kaikesta vastuusta.</string>
     <string name="auto_brightness_setup_title">Automaattinen kirkkaus</string>
     <string name="auto_brightness_adjustment_title">Kirkkauden säätö</string>
     <string name="auto_brightness_twilight_adjustment">Aseta auringonnousuun ja -laskuun</string>
