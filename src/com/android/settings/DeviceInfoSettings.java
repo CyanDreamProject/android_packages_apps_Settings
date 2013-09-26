@@ -93,9 +93,10 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
         findPreference(KEY_BUILD_NUMBER).setEnabled(true);
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
-        setValueSummary(KEY_MOD_VERSION, "ro.cm.version");
+        setValueSummary(KEY_MOD_VERSION, "ro.cf.version");
         findPreference(KEY_MOD_VERSION).setEnabled(true);
         setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
+        getPreferenceScreen().removePreference(findPreference(KEY_MOD_BUILD_DATE));
 
         if (!SELinux.isSELinuxEnabled()) {
             String status = getResources().getString(R.string.selinux_status_disabled);
@@ -104,7 +105,8 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
             String status = getResources().getString(R.string.selinux_status_permissive);
             setStringSummary(KEY_SELINUX_STATUS, status);
         }
-        findPreference(KEY_SELINUX_STATUS).setEnabled(true);
+        findPreference(KEY_SELINUX_STATUS).setEnabled(false);
+        getPreferenceScreen().removePreference(findPreference(KEY_SELINUX_STATUS));
 
         // Remove selinux information if property is not present
         removePreferenceIfPropertyMissing(getPreferenceScreen(), KEY_SELINUX_STATUS,
@@ -114,11 +116,11 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         String memInfo = getMemInfo();
 
         // Only the owner should see the Updater settings, if it exists
-        if (UserHandle.myUserId() == UserHandle.USER_OWNER) {
+        /*if (UserHandle.myUserId() == UserHandle.USER_OWNER) {
             removePreferenceIfPackageNotInstalled(findPreference(KEY_CM_UPDATES));
         } else {
             getPreferenceScreen().removePreference(findPreference(KEY_CM_UPDATES));
-        }
+        }*/
 
         if (cpuInfo != null) {
             setStringSummary(KEY_DEVICE_CPU, cpuInfo);
