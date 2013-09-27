@@ -889,22 +889,21 @@
 
         <activity android:name="Settings$AppOpsSummaryActivity"
                 android:label="@string/app_ops_settings"
-                android:taskAffinity=""
+                android:taskAffinity="com.android.settings"
+                android:parentActivityName="Settings"
                 android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.settings.APP_OPS_SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <!-- Not yet ready to expose.
                 <category android:name="android.intent.category.VOICE_LAUNCH" />
                 <category android:name="com.android.settings.SHORTCUT" />
-                -->
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.android.settings.applications.AppOpsSummary" />
             <!--
-            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
-                android:resource="@id/application_settings" /> -->
+	    <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+		android:resource="@id/application_settings" /> -->
         </activity>
         
         <activity android:name="Settings$LocationSettingsActivity"
@@ -1085,6 +1084,8 @@
         <!-- Lock screen settings -->
         <activity android:name="ConfirmLockPattern"/>
 
+        <activity android:name="ConfirmLockGesture"/>
+
         <activity android:name="ConfirmLockPassword"
             android:windowSoftInputMode="stateVisible|adjustResize"/>
 
@@ -1100,6 +1101,8 @@
         <activity android:name="ChooseLockPatternSize" android:exported="false"/>
 
         <activity android:name="ChooseLockPattern" android:exported="false"/>
+
+        <activity android:name="ChooseLockGesture" android:exported="false"/>
 
         <activity android:name="ChooseLockPassword" android:exported="false"
             android:windowSoftInputMode="stateVisible|adjustResize"/>
@@ -1706,6 +1709,22 @@
         <activity android:name=".cyanogenmod.NotificationDrawer" />
 
         <activity android:name=".cyanogenmod.MoreDeviceSettings" />
+        
+        <activity android:name=".cyanogenmod.RamBar" />
+
+	<activity android:name=".cyanogenmod.StatusBarStyle" />
+
+	<activity android:name=".cyanogenmod.StatusBarClockStyle" />
+
+	<activity android:name=".cyanogenmod.NotificationDrawerStyle" /> 
+
+	<activity android:name=".cyanogenmod.NavBarStyle" />
+
+	<activity android:name=".cyanogenmod.NavBarDimen" />
+
+        <activity android:name=".cyanogenmod.NavBarSettings" />
+
+	<activity android:name=".cyanogenmod.HaloSettings" />
 
         <!-- "Blacklist settings" UI, used only on voice-capable phone devices. -->
         <activity android:name="Settings$BlacklistSettingsActivity"
@@ -1724,7 +1743,7 @@
                 android:resource="@id/security_settings" />
         </activity>
 
-        <activity android:name=".profiles.NFCProfile"
+	<activity android:name=".profiles.NFCProfile"
                 android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
@@ -1749,13 +1768,25 @@
 
         <!-- CyanogenMod activities End -->
 
+        <!-- Pseudo-activity used to provide an intent-filter entry point to ass display rotation config -->
+        <activity android:name="Settings$ASSRamBarActivity"
+                android:label="@string/ram_bar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.cyanogenmod.RamBar" />
+        </activity>
+
         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->
+        
         <activity android:name="Settings$CryptKeeperSettingsActivity"
                 android:label="@string/crypt_keeper_encrypt_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.app.action.START_ENCRYPTION" />
-                <category android:name="android.intent.category.DEFAULT" /> />
+                <category android:name="android.intent.category.DEFAULT" /> 
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.android.settings.CryptKeeperSettings" />

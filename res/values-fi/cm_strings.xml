@@ -377,8 +377,8 @@
     <string name="power_menu_profiles_title">Profiilit</string>
     <string name="power_menu_airplane_title">Lentokonetila</string>
     <string name="power_menu_user_title">Käyttäjät</string>
-    <string name="power_menu_sound_title">Äänipaneeli</string>
     <string name="cmupdate_settings_title">CyanDream-päivitykset</string>
+    <string name="power_menu_sound_title">Äänipaneeli</string>
     <string name="cmupdate_settings_summary">Tarkista, katso tai asenna saatavilla olevat päivitykset</string>
     <string name="advanced_settings_title">Lisäasetukset</string>
     <string name="ime_switcher_notify">Syöttötavan ilmoitus</string>

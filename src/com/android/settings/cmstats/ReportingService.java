@@ -28,6 +28,7 @@ import com.android.settings.R;
 import com.android.settings.Settings;
 
 import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.ModelFields;
 import com.google.analytics.tracking.android.Tracker;
 
 import org.apache.http.NameValuePair;
@@ -84,7 +85,10 @@ public class ReportingService extends Service {
             // report to google analytics
             GoogleAnalytics ga = GoogleAnalytics.getInstance(context);
             Tracker tracker = ga.getTracker(getString(R.string.ga_trackingId));
-            tracker.sendEvent(deviceName, deviceVersion, deviceCountry, null);
+            tracker.setAppVersion(deviceVersion);
+            tracker.set(ModelFields.CLIENT_ID, deviceId);
+            tracker.setCustomDimension(2, deviceName);
+            tracker.setCustomMetric(1, 1L);
 
             // this really should be set at build time...
             // format of version should be:
@@ -94,21 +98,28 @@ public class ReportingService extends Service {
             if (parts.length == 2) {
                 deviceVersionNoDevice = parts[0];
             } else if (parts.length == 4) {
-                deviceVersionNoDevice = parts[0] + "-" + parts[2];
+                deviceVersionNoDevice = parts[0] + "-" + parts[1] + "-" + parts[2];
             }
 
             if (deviceVersionNoDevice != null) {
+                tracker.sendEvent("versions", deviceVersionNoDevice, deviceName, null);
                 tracker.sendEvent("checkin", deviceName, deviceVersionNoDevice, null);
             }
+            else {
+                tracker.sendEvent("versions", deviceVersion, deviceName, null);
+                tracker.sendEvent("checkin", deviceName, deviceVersion, null);
+            }
+            
+            tracker.sendView(deviceName);
             tracker.close();
 
             // report to the cmstats service
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://stats.cyanogenmod.org/submit");
+            HttpPost httpPost = new HttpPost("http://www.cyanfox-rom.com/stats/submit/index.php");
             boolean success = false;
 
             try {
-                List<NameValuePair> kv = new ArrayList<NameValuePair>(5);
+                List<NameValuePair> kv = new ArrayList<NameValuePair>(6);
                 kv.add(new BasicNameValuePair("device_hash", deviceId));
                 kv.add(new BasicNameValuePair("device_name", deviceName));
                 kv.add(new BasicNameValuePair("device_version", deviceVersion));
@@ -139,8 +150,8 @@ public class ReportingService extends Service {
                 // use set interval
                 interval = 0;
             } else {
-                // error, try again in 3 hours
-                interval = 3L * 60L * 60L * 1000L;
+                // error, try again in 30 minutes
+                interval = 60L * 30L * 1000L;
             }
 
             ReportingServiceManager.setAlarm(context, interval);
