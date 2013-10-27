@@ -750,6 +750,7 @@
     <string name="navigation_ring_title">Ярлыки быстрого запуска</string>
     <string name="navring_target_reset_message">Удалить пользовательские настройки ярлыков быстрого запуска?</string>
     <string name="navring_target_reset">Ярлыки быстрого запуска были сброшены к значениям по умолчанию</string>
+    <string name="navring_target_save">Ярлыки быстрого запуска сохранены</string>
     <string name="navring_action_open_ime_switcher">Выбор способа ввода</string>
     <string name="navring_action_kill_app">Закрыть приложение</string>
     <string name="navring_action_none">Нет</string>

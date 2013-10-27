@@ -95,6 +95,7 @@
     <string name="lockscreen_target_title">Snelkoppelingen</string>
     <string name="lockscreen_target_summary">Snelkoppelingen op vergrendelscherm beheren</string>
     <string name="lockscreen_target_reset">Snelkoppelingen hersteld naar standaardwaarden</string>
+    <string name="lockscreen_target_save">Snelkoppelingen opgeslagen</string>
     <string name="lockscreen_target_reset_title">Herstellen</string>
     <string name="lockscreen_target_reset_message">Alle gemaakte snelkoppelingen verwijderen en standaardwaarden herstellen?</string>
     <string name="lockscreen_target_empty">Niet toegewezen</string>
@@ -520,7 +521,7 @@ Let op:\nAangezien het beginvolume hoger is ingesteld dan het beltoonvolume, wor
     <string name="headset_connect_player_summary">Standaardmuziek-app openen indien headset wordt aangesloten</string>
     <string name="safe_headset_volume_title">Veilig headsetvolume</string>
     <string name="cyanogenmod_waiver_title">Afstandsverklaring</string>
-    <string name="cyanogenmod_waiver_body">Het wijzigen van deze instelling kan in overtreding zijn met de regelgeving in uw staat/land.\n\nDoor te tikken op \'OK\' erkent u deze waarschuwing en doet u afstand van en vrijwaart u CyanDream en/of haar bijdragers van alle wettelijke verplichtingen</string>
+    <string name="cyanogenmod_waiver_body">Het wijzigen van deze instelling kan in overtreding zijn met de regelgeving in uw staat/land.\n\nDoor te tikken op \'OK\' erkent u deze waarschuwing en doet u afstand van en vrijwaart u CyanogenMod en/of haar bijdragers van alle wettelijke verplichtingen</string>
     <string name="auto_brightness_setup_title">Automatische helderheid</string>
     <string name="auto_brightness_adjustment_title">Helderheid aanpassen</string>
     <string name="auto_brightness_twilight_adjustment">Aanpassen aan zonsopgang en zonsondergang</string>
@@ -564,6 +565,7 @@ Elke regel in de lijst van helderheidsstanden komt overeen met één <i>controle
     <string name="navigation_ring_title">Snelkoppelingen</string>
     <string name="navring_target_reset_message">Alle snelkoppelingen herstellen naar standaard?</string>
     <string name="navring_target_reset">Snelkoppelingen hersteld naar standaard</string>
+    <string name="navring_target_save">Snelkoppelingen opgeslagen</string>
     <string name="navring_action_open_ime_switcher">Invoermethode wisselen</string>
     <string name="navring_action_kill_app">App afsluiten</string>
     <string name="navring_action_none">Geen</string>

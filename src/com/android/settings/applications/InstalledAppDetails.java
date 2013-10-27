@@ -25,7 +25,6 @@ import com.android.settings.applications.ApplicationsState.AppEntry;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.app.AppOpsManager;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -68,7 +67,6 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -109,13 +107,11 @@ public class InstalledAppDetails extends Fragment
     private AppWidgetManager mAppWidgetManager;
     private DevicePolicyManager mDpm;
     private ISms mSmsManager;
-    private INotificationManager mNotificationManager;   
     private ApplicationsState mState;
     private ApplicationsState.Session mSession;
     private ApplicationsState.AppEntry mAppEntry;
     private boolean mInitialized;
     private boolean mShowUninstalled;
-    private boolean mHaloPolicyIsBlack = true; 
     private PackageInfo mPackageInfo;
     private CanBeOnSdCardChecker mCanBeOnSdCardChecker;
     private View mRootView;
@@ -143,11 +139,10 @@ public class InstalledAppDetails extends Fragment
     private Button mForceStopButton;
     private Button mClearDataButton;
     private Button mMoveAppButton;
+    private CompoundButton mNotificationSwitch;
     private CompoundButton mPrivacyGuardSwitch;
-    private CompoundButton mNotificationSwitch, mHaloState; 
 
     private PackageMoveObserver mPackageMoveObserver;
-    private AppOpsManager mAppOps;
 
     private boolean mDisableAfterUninstall;
 
@@ -388,18 +383,16 @@ public class InstalledAppDetails extends Fragment
     }
 
     private void initNotificationButton() {
+        INotificationManager nm = INotificationManager.Stub.asInterface(
+                ServiceManager.getService(Context.NOTIFICATION_SERVICE));
         boolean enabled = true; // default on
-	boolean allowedForHalo = true; // default on  
         try {
-	    enabled = mNotificationManager.areNotificationsEnabledForPackage(mAppEntry.info.packageName,
+            enabled = nm.areNotificationsEnabledForPackage(mAppEntry.info.packageName,
                     mAppEntry.info.uid);
-            allowedForHalo = mNotificationManager.isPackageAllowedForHalo(mAppEntry.info.packageName);
         } catch (android.os.RemoteException ex) {
             // this does not bode well
         }
         mNotificationSwitch.setChecked(enabled);
-	mHaloState.setChecked((mHaloPolicyIsBlack ? !allowedForHalo : allowedForHalo));
-        mHaloState.setOnCheckedChangeListener(this); 
         if (isThisASystemPackage()) {
             mNotificationSwitch.setEnabled(false);
         } else {
@@ -412,11 +405,16 @@ public class InstalledAppDetails extends Fragment
         if (mPrivacyGuardSwitch == null) {
             return;
         }
-        mAppOps = (AppOpsManager)getActivity().getSystemService(Context.APP_OPS_SERVICE);
-        boolean isEnabled = mAppOps.getPrivacyGuardSettingForPackage(
-            mAppEntry.info.uid, mAppEntry.info.packageName);
-        mPrivacyGuardSwitch.setChecked(isEnabled);
-        mPrivacyGuardSwitch.setOnCheckedChangeListener(this);
+
+        mPrivacyGuardSwitch.setChecked(mPm.getPrivacyGuardSetting(mAppEntry.info.packageName));
+
+        // disable privacy guard switch if the app is signed with the platform certificate
+        // to avoid the user shooting himself in the foot
+        if (isThisASystemPackage()) {
+            mPrivacyGuardSwitch.setEnabled(false);
+        } else {
+            mPrivacyGuardSwitch.setOnCheckedChangeListener(this);
+        }
     }
 
     /** Called when the activity is first created. */
@@ -433,16 +431,8 @@ public class InstalledAppDetails extends Fragment
         mAppWidgetManager = AppWidgetManager.getInstance(getActivity());
         mDpm = (DevicePolicyManager)getActivity().getSystemService(Context.DEVICE_POLICY_SERVICE);
         mSmsManager = ISms.Stub.asInterface(ServiceManager.getService("isms"));
-	mNotificationManager = INotificationManager.Stub.asInterface(
-                ServiceManager.getService(Context.NOTIFICATION_SERVICE));
 
         mCanBeOnSdCardChecker = new CanBeOnSdCardChecker();
-
-	try {
-            mHaloPolicyIsBlack = mNotificationManager.isHaloPolicyBlack();
-        } catch (android.os.RemoteException ex) {
-            // System dead
-        }  
 
         // Need to make sure we have loaded applications at this point.
         mSession.resume();
@@ -503,8 +493,7 @@ public class InstalledAppDetails extends Fragment
         mEnableCompatibilityCB = (CheckBox)view.findViewById(R.id.enable_compatibility_cb);
         
         mNotificationSwitch = (CompoundButton) view.findViewById(R.id.notification_switch);
-	mHaloState = (CompoundButton) view.findViewById(R.id.halo_state);
-        mHaloState.setText((mHaloPolicyIsBlack ? R.string.app_halo_label_black : R.string.app_halo_label_white));  
+
         mPrivacyGuardSwitch = (CompoundButton) view.findViewById(R.id.privacy_guard_switch);
 
         return view;
@@ -1339,25 +1328,20 @@ public class InstalledAppDetails extends Fragment
     }
 
     private void setNotificationsEnabled(boolean enabled) {
+        String packageName = mAppEntry.info.packageName;
+        INotificationManager nm = INotificationManager.Stub.asInterface(
+                ServiceManager.getService(Context.NOTIFICATION_SERVICE));
         try {
             final boolean enable = mNotificationSwitch.isChecked();
-            mNotificationManager.setNotificationsEnabledForPackage(mAppEntry.info.packageName, mAppEntry.info.uid, enabled);
+            nm.setNotificationsEnabledForPackage(packageName, mAppEntry.info.uid, enabled);
         } catch (android.os.RemoteException ex) {
             mNotificationSwitch.setChecked(!enabled); // revert
         }
     }
 
-    private void setHaloState(boolean state) {
-        try {
-            mNotificationManager.setHaloStatus(mAppEntry.info.packageName, state);
-        } catch (android.os.RemoteException ex) {
-            mHaloState.setChecked(!state); // revert
-        }
-    }   
-
     private void setPrivacyGuard(boolean enabled) {
-        mAppOps.setPrivacyGuardSettingForPackage(
-            mAppEntry.info.uid, mAppEntry.info.packageName, enabled);
+        String packageName = mAppEntry.info.packageName;
+        mPm.setPrivacyGuardSetting(packageName, enabled);
     }
 
     private int getPremiumSmsPermission(String packageName) {
@@ -1457,8 +1441,6 @@ public class InstalledAppDetails extends Fragment
             } else {
                 setNotificationsEnabled(true);
             }
-	} else if (buttonView == mHaloState) {
-            setHaloState(isChecked);    
         } else if (buttonView == mPrivacyGuardSwitch) {
             if (isChecked) {
                 showDialogInner(DLG_PRIVACY_GUARD, 0);

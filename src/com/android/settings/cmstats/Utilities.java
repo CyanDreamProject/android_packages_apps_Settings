@@ -28,12 +28,8 @@ import java.security.MessageDigest;
 
 public class Utilities {
     public static String getUniqueID(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String id = tm.getDeviceId();
-        if (id == null) {
-            id = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-        }
-        return id;
+        final String id = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        return digest(context.getPackageName() + id);
     }
 
     public static String getCarrier(Context context) {
@@ -69,5 +65,14 @@ public class Utilities {
 
     public static String getModVersion() {
         return SystemProperties.get("ro.cm.version");
+    }
+
+    public static String digest(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            return new BigInteger(1, md.digest(input.getBytes())).toString(16).toUpperCase();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

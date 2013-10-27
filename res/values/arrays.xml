@@ -586,7 +586,10 @@
 
     <!-- Names of categories of app ops tabs -->
     <string-array name="app_ops_categories">
-        <item>Operations</item> 
+        <item>Location</item>
+        <item>Personal</item>
+        <item>Messaging</item>
+        <item>Device</item>
     </string-array>
 
     <!-- User display names for app ops codes -->
@@ -912,73 +915,5 @@
         <item>Never allow</item>
         <!-- Always allow app to send to premium SMS short code. -->
         <item>Always allow</item>
-    </string-array>
-
-    
-    <!-- Recents RAM bar-->
-    <string-array name="entries_ram_bar_mode">
-        <item>@string/ram_bar_none</item>
-        <item>@string/ram_bar_apps</item>
-        <item>@string/ram_bar_cache</item>
-        <item>@string/ram_bar_other</item>
-    </string-array>
-
-    <string-array name="values_ram_bar_mode" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <!-- Listview animation -->
-    <string-array name="listview_animation_entries">
-        <item>@string/listview_off</item>
-        <item>@string/listview_wave_left</item>
-        <item>@string/listview_wave_right</item>
-        <item>@string/listview_scale</item>
-        <item>@string/listview_alpha</item>
-        <item>@string/listview_stack_top</item>
-        <item>@string/listview_stack_bottom</item>
-        <item>@string/listview_unfold</item>
-        <item>@string/listview_fold</item>
-        <item>@string/listview_translate_left</item>
-        <item>@string/listview_translate_right</item>
-    </string-array>
-    
-    <string-array name="listview_animation_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-    </string-array>
-
-    <!-- Listview Interpolator -->
-    <string-array name="listview_interpolator_entries">
-        <item>@string/listview_off</item>
-        <item>@string/listview_accelerate_interpolator</item>
-        <item>@string/listview_decelerate_interpolator</item>
-        <item>@string/listview_accelerate_decelerate_interpolator</item>
-        <item>@string/listview_anticipate_interpolator</item>
-        <item>@string/listview_overshoot_interpolator</item>
-        <item>@string/listview_anticipate_overshoot_interpolator</item>
-        <item>@string/listview_bounce_interpolator</item>
-    </string-array>
-
-    <string-array name="listview_interpolator_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
     </string-array>
 </resources>

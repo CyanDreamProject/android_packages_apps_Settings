@@ -194,6 +194,11 @@ public class NavRing extends Fragment implements
             .setAlphabeticShortcut('r')
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM |
                 MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        menu.add(0, MENU_SAVE, 0, R.string.wifi_save)
+            .setIcon(R.drawable.ic_menu_save)
+            .setAlphabeticShortcut('s')
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM |
+                MenuItem.SHOW_AS_ACTION_WITH_TEXT);
     }
 
     @Override
@@ -201,6 +206,10 @@ public class NavRing extends Fragment implements
         switch (item.getItemId()) {
             case MENU_RESET:
                 resetAll();
+                return true;
+            case MENU_SAVE:
+                saveAll();
+                Toast.makeText(getActivity(), R.string.navring_target_save, Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return false;

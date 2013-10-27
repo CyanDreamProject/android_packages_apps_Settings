@@ -62,25 +62,18 @@
     <header android:id="@+id/interface_section"
         android:title="@string/header_category_interface" />
 
-    <!-- System UI -->
+    <!-- Homescreen -->
     <header
-        android:id="@+id/system_settings"
-        android:icon="@drawable/ic_settings_system"
-        android:fragment="com.android.settings.cyanogenmod.SystemUiSettings"
-        android:title="@string/system_settings_title" />
+        android:id="@+id/homescreen_settings"
+        android:title="@string/homescreen_settings_title"
+        android:icon="@drawable/ic_settings_cmlauncher" />
 
-	<!-- Homescreen -->
-	<header
-		android:id="@+id/homescreen_settings"
-		android:title="@string/homescreen_settings_title"
-		android:icon="@drawable/ic_settings_cmlauncher" />
-
-	<!-- Lock screen -->
-	<header
-		android:id="@+id/lock_screen_settings"
-		android:fragment="com.android.settings.cyanogenmod.LockscreenInterface"
-		android:title="@string/lock_screen_title"
-		android:icon="@drawable/ic_settings_lockscreen" />
+    <!-- Lock screen -->
+    <header
+        android:id="@+id/lock_screen_settings"
+        android:fragment="com.android.settings.cyanogenmod.LockscreenInterface"
+        android:title="@string/lock_screen_title"
+        android:icon="@drawable/ic_settings_lockscreen" />
 
     <!-- Themes -->
     <header
@@ -92,6 +85,23 @@
             android:targetPackage="com.tmobile.themechooser"
             android:targetClass="com.tmobile.themechooser.ThemeChooser" />
     </header>
+	
+	    <!-- TRDS -->
+    <header
+        android:id="@+id/trds_settings"
+        android:icon="@drawable/ic_settings_trds"
+        android:title="@string/trds_settings_title" />
+	
+	<header
+		android:id="@+id/system_settings"
+		android:icon="@drawable/ic_settings_themes"
+		android:title="@string/cd_settings_title" />
+    <!-- System UI -->
+    <header
+        android:id="@+id/system_settings"
+        android:icon="@drawable/ic_settings_system"
+        android:fragment="com.android.settings.cyanogenmod.SystemUiSettings"
+        android:title="@string/system_settings_title" />
 
     <!-- DEVICE -->
     <header android:id="@+id/device_section"
@@ -113,7 +123,6 @@
 
     <!-- Buttons -->
     <header
-        android:id="@+id/button_settings"
         android:icon="@drawable/ic_settings_buttons"
         android:fragment="com.android.settings.cyanogenmod.ButtonSettings"
         android:title="@string/button_settings" />

@@ -94,6 +94,7 @@
     <string name="lockscreen_target_title">Lukitusnäytön pikakuvakkeet</string>
     <string name="lockscreen_target_summary">Katso tai muokkaa omia lukitusnäytön pikakuvakkeita</string>
     <string name="lockscreen_target_reset">Nollaa pikakuvakkeet oletuksiin</string>
+    <string name="lockscreen_target_save">Lukitusnäytön pikakuvakkeet tallennettu</string>
     <string name="lockscreen_target_reset_title">Nollaa</string>
     <string name="lockscreen_target_reset_message">Poista kaikki käyttäjän luomat pikakuvakkeet ja palauta oletukset?</string>
     <string name="lockscreen_target_empty">Tyhjä</string>
@@ -377,8 +378,8 @@
     <string name="power_menu_profiles_title">Profiilit</string>
     <string name="power_menu_airplane_title">Lentokonetila</string>
     <string name="power_menu_user_title">Käyttäjät</string>
-    <string name="cmupdate_settings_title">CyanDream-päivitykset</string>
     <string name="power_menu_sound_title">Äänipaneeli</string>
+    <string name="cmupdate_settings_title">CyanDream-päivitykset</string>
     <string name="cmupdate_settings_summary">Tarkista, katso tai asenna saatavilla olevat päivitykset</string>
     <string name="advanced_settings_title">Lisäasetukset</string>
     <string name="ime_switcher_notify">Syöttötavan ilmoitus</string>
@@ -553,6 +554,7 @@ Lisää asetuksia on saaavilla painamalla riviä pitkään. Valitsemalla \'Muokk
     <string name="navigation_ring_title">Pikakäynnistyksen kuvakkeet</string>
     <string name="navring_target_reset_message">Poista kaikki käyttäjän luomat navigointipalkin pikakuvakkeet ja palauta oletukset?</string>
     <string name="navring_target_reset">Navigointipalkin pikakuvakkeet palautettu oletuksiinsa</string>
+    <string name="navring_target_save">Navigationpalkin pikakuvakkeet tallenettu</string>
     <string name="navring_action_open_ime_switcher">Avaa syöttötavan valinta</string>
     <string name="navring_action_kill_app">Tapa sovellus</string>
     <string name="navring_action_none">Ei mitään</string>

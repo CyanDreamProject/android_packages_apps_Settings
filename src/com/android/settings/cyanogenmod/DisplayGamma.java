@@ -151,10 +151,7 @@ public class DisplayGamma extends DialogPreference {
 
                     for (int color = 0; color < BAR_COLORS.length; color++) {
                         mSeekBars[index][color].setGamma(Integer.valueOf(defaultColors[color]));
-                        mCurrentColors[index][color] = defaultColors[color];
                     }
-                    DisplayGammaCalibration.setGamma(index,
-                            TextUtils.join(" ", mCurrentColors[index]));
                 }
             }
        });

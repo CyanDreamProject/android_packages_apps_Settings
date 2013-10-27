@@ -16,32 +16,20 @@
 
 package com.android.settings.cyanogenmod;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.IWindowManager;
 import android.view.WindowManagerGlobal;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.cyanogenmod.RamBar;
-import com.android.settings.Utils;
-import com.android.settings.util.CMDProcessor;
-import com.android.settings.util.Helpers;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SystemUiSettings extends SettingsPreferenceFragment  implements
         Preference.OnPreferenceChangeListener {
@@ -49,26 +37,13 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
 
     private static final String KEY_EXPANDED_DESKTOP = "expanded_desktop";
     private static final String KEY_EXPANDED_DESKTOP_NO_NAVBAR = "expanded_desktop_no_navbar";
-    private static final String CATEGORY_GENERAL_UI = "general_ui";
-    private static final String CATEGORY_ADVANCED_UI = "advanced_ui";
     private static final String CATEGORY_NAVBAR = "navigation_bar";
     private static final String KEY_PIE_CONTROL = "pie_control";
-    private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
-    private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
-    private static final String KEY_GENERAL_OPTIONS = "general_settings_options_prefs";
-    private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
-
-    private static final String KEY_NAVIGATION_BAR = "navigation_bar";
-    private static final String KEY_NAVIGATION_RING = "navigation_ring";
-    private static final String KEY_NAVIGATION_BAR_CATEGORY = "navigation_bar_category";
 
     private PreferenceScreen mPieControl;
     private ListPreference mExpandedDesktopPref;
     private CheckBoxPreference mExpandedDesktopNoNavbarPref;
-    private ListPreference mListViewAnimation;
-    private ListPreference mListViewInterpolator;
-    private Preference mRamBar;
-   
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,31 +53,6 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
 
         mPieControl = (PreferenceScreen) findPreference(KEY_PIE_CONTROL);
 
-        //ListView Animations
-        mListViewAnimation = (ListPreference) findPreference(KEY_LISTVIEW_ANIMATION);
-        int listviewanimation = Settings.System.getInt(getActivity().getContentResolver(),
-            Settings.System.LISTVIEW_ANIMATION, 4);
-        mListViewAnimation.setValue(String.valueOf(listviewanimation));
-        mListViewAnimation.setSummary(mListViewAnimation.getEntry());
-        mListViewAnimation.setOnPreferenceChangeListener(this);
-
-        mListViewInterpolator = (ListPreference) findPreference(KEY_LISTVIEW_INTERPOLATOR);
-        int listviewinterpolator = Settings.System.getInt(getActivity().getContentResolver(),
-            Settings.System.LISTVIEW_INTERPOLATOR, 5);
-        mListViewInterpolator.setValue(String.valueOf(listviewinterpolator));
-        mListViewInterpolator.setSummary(mListViewInterpolator.getEntry());
-        mListViewInterpolator.setOnPreferenceChangeListener(this);
- 
-        //RamBar
-        mRamBar = findPreference(KEY_RECENTS_RAM_BAR);
-        mRamBar.setOnPreferenceChangeListener(this);
-        updateRamBar();
-
-        final PreferenceCategory generalUi =
-                (PreferenceCategory) prefScreen.findPreference(CATEGORY_GENERAL_UI);
-        final PreferenceCategory advancedUi =
-                (PreferenceCategory) prefScreen.findPreference(CATEGORY_ADVANCED_UI);
-
         // Expanded desktop
         mExpandedDesktopPref = (ListPreference) findPreference(KEY_EXPANDED_DESKTOP);
         mExpandedDesktopNoNavbarPref =
@@ -111,24 +61,24 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
         int expandedDesktopValue = Settings.System.getInt(getContentResolver(),
                 Settings.System.EXPANDED_DESKTOP_STYLE, 0);
 
-        // Hide no-op "Status bar visible" mode on devices without navbar
         try {
             boolean hasNavBar = WindowManagerGlobal.getWindowManagerService().hasNavigationBar();
 
+            // Hide no-op "Status bar visible" mode on devices without navigation bar
             if (hasNavBar) {
                 mExpandedDesktopPref.setOnPreferenceChangeListener(this);
                 mExpandedDesktopPref.setValue(String.valueOf(expandedDesktopValue));
                 updateExpandedDesktop(expandedDesktopValue);
-                advancedUi.removePreference(mExpandedDesktopNoNavbarPref);
+                prefScreen.removePreference(mExpandedDesktopNoNavbarPref);
             } else {
                 mExpandedDesktopNoNavbarPref.setOnPreferenceChangeListener(this);
                 mExpandedDesktopNoNavbarPref.setChecked(expandedDesktopValue > 0);
-                advancedUi.removePreference(mExpandedDesktopPref);
+                prefScreen.removePreference(mExpandedDesktopPref);
             }
 
             // Hide navigation bar category on devices without navigation bar
             if (!hasNavBar) {
-                generalUi.removePreference(findPreference(CATEGORY_NAVBAR));
+                prefScreen.removePreference(findPreference(CATEGORY_NAVBAR));
                 mPieControl = null;
             }
         } catch (RemoteException e) {
@@ -136,46 +86,14 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
         }
     }
 
-    private void updateRamBar() {
-        int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.RECENTS_RAM_BAR_MODE, 3);
-        if (ramBarMode != 0)
-            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_enabled));
-        else
-            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
-    }
-
     @Override
     public void onResume() {
         super.onResume();
         updatePieControlSummary();
-        updateRamBar();
-    }
-
-        @Override
-    public void onPause() {
-        super.onResume();
-        updateRamBar();
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        if (preference == mListViewAnimation) {
-            int listviewanimation = Integer.valueOf((String) objValue);
-            int index = mListViewAnimation.findIndexOfValue((String) objValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.LISTVIEW_ANIMATION,
-                    listviewanimation);
-            mListViewAnimation.setSummary(mListViewAnimation.getEntries()[index]);
-            return true;
-        } else if (preference == mListViewInterpolator) {
-            int listviewinterpolator = Integer.valueOf((String) objValue);
-            int index = mListViewInterpolator.findIndexOfValue((String) objValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.LISTVIEW_INTERPOLATOR,
-                    listviewinterpolator);
-            mListViewInterpolator.setSummary(mListViewInterpolator.getEntries()[index]);
-            return true;
-        } else if (preference == mExpandedDesktopPref) {
+        if (preference == mExpandedDesktopPref) {
             int expandedDesktopValue = Integer.valueOf((String) objValue);
             updateExpandedDesktop(expandedDesktopValue);
             return true;
@@ -184,6 +102,7 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
             updateExpandedDesktop(value ? 2 : 0);
             return true;
         }
+
         return false;
     }
 
@@ -198,12 +117,6 @@ public class SystemUiSettings extends SettingsPreferenceFragment  implements
                 mPieControl.setSummary(R.string.pie_control_disabled);
             }
         }
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
-            Preference preference) {    
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     private void updateExpandedDesktop(int value) {
