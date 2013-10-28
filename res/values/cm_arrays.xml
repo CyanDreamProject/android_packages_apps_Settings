@@ -611,19 +611,6 @@
         <item>1</item>
     </string-array>
 
-    <!-- AutoHide StatusBar -->
-    <string-array name="entries_auto_hide_statusbar">
-        <item>@string/auto_hide_statusbar_off</item>
-        <item>@string/auto_hide_statusbar_nonperm</item>
-        <item>@string/auto_hide_statusbar_all</item>
-    </string-array>
-
-    <string-array name="values_auto_hide_statusbar" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array> 
-
      <!--- Navigation bar height and width -->
     <string-array name="navigation_bar_width_entries" translatable="false">
         <item>@string/size_42_dp_default</item>
