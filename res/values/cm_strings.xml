@@ -885,6 +885,10 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
 
     <!-- Menu label for reset the battery stats -->
     <string name="menu_stats_reset">Reset</string>
+	
+     <!--Lockscreen See Through-->
+     <string name="see_through_title">See through</string>
+     <string name="see_through_summary">Shows the content behind your lockscreen, your data may be visible to those around you</string>
 
     <!-- CM Legal -->
     <string name="cmlicense_title">CyanogenMod Legal</string>
