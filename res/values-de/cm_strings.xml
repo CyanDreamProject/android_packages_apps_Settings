@@ -766,4 +766,7 @@ auf <xliff:g id="new" example="libart.so">%2$s</xliff:g> zu ändern?</string>
     <string name="bluetooth_dun_profile_summary_connected">Verbunden mit Einwahldienst</string>
     <string name="bluetooth_sap_profile_summary_use_for">Für SIM-Zugriff verwenden</string>
     <string name="bluetooth_dun_profile_summary_use_for">Für Einwahlverbindungen verwenden</string>
+
+    <!-- CyanDream -->
+    <string name="cyandream_permissionfixer">Schreibrechte korrigieren</string>
 </resources>

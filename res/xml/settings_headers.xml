@@ -58,6 +58,27 @@
         android:fragment="com.android.settings.WirelessSettings"
         android:icon="@drawable/empty_icon" />
 
+    <!-- CyanDream -->
+    <header android:id="@+id/cyandream_section"
+        android:title="@string/header_category_cyandream" />
+
+    <!-- HALO -->
+    <header
+        android:id="@+id/halo_settings"
+        android:fragment="com.android.settings.cyanogenmod.Halo"
+        android:icon="@drawable/ic_settings_halo" 
+        android:title="@string/halo_settings_title" />
+
+    <!-- Whil Wheaton Permission Fixer -->
+    <header
+        android:id="@+id/cyandream_wwpf"
+        android:icon="@drawable/ic_settings_storage" 
+        android:title="@string/cyandream_permissionfixer" >
+                    <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.koushikdutta.wesleycrusher"
+                    android:targetClass="com.koushikdutta.wesleycrusher.MyActivity" />
+    </header>
+
     <!-- INTERFACE -->
     <header android:id="@+id/interface_section"
         android:title="@string/header_category_interface" />
@@ -68,13 +89,6 @@
         android:icon="@drawable/ic_settings_home"
         android:fragment="com.android.settings.HomeSettings"
         android:title="@string/home_settings" />
-
-    <!-- HALO -->
-    <header
-        android:id="@+id/halo_settings"
-        android:fragment="com.android.settings.cyanogenmod.Halo"
-        android:icon="@drawable/ic_settings_halo" 
-        android:title="@string/halo_settings_title" />
 
     <!-- Lock screen -->
     <header
