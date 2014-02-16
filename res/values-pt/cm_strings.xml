@@ -739,4 +739,4 @@ controle adicionais. \'Remover\' apaga a linha selecionada.
     <string name="navigation_bar_left_summary">Posicionar a barra de navegação no lado esquerdo da tela quando em modo paisagem</string>
     <string name="pref_force_highend_gfx_title">Forçar gráficos de alta qualidade</string>
     <string name="pref_force_highend_gfx_summary">Ativa efeitos visuais de alta qualidade com barra de status/navegação transparente (requer reinicilização)</string>
->>>>>>> 758b10f1a621f7c0bb99fa022a42f9eccda46635
+</resources>
